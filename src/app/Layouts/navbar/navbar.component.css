@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --color1: #814792;
+  --color2: #6f2c6c;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --extra-light: #faf5ff;
+}
+
+.navbar{
+  box-shadow: 0 0.1rem 0.6rem rgba(134, 144, 163, 0.3);
+}
+
+a{
+  text-decoration: none;
+}
+
+.dropdown{
+  cursor: pointer;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: default;
+}
+
+img{
+    width: 60px;
+    height: 60px;
+    margin-right: 0.5rem;
+}
+
+h5{
+    color: var(--text-dark);
+}
+
+.change{
+    color: var(--color2);
+    font-size: 1.6rem;
+}
+
+.containerStyle{
+    background-color: #ffffff;
+}
+
+.containerStyle a {
+  font-weight: bold;
+  margin: auto;
+  padding: 1rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.navbar .navbar-nav .nav-link.active {
+  color: var(--color1);
+}
+
+.containerStyle a:hover {
+    color: var(--color1);
+}
+
+.btnLR {
+  background-color: var(--color2);
+  color: var(--extra-light);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.btnLR:active,
+.btnLR:focus {
+  background-color: var(--color2);
+  color: var(--extra-light);
+}
+
+.btn-close-black:active {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (max-width: 991px){
+    .sidebar{
+      background-color: #ffffff;
+      backdrop-filter: blur(10px);
+    } 
+  }

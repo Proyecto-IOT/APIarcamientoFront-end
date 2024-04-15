@@ -1,0 +1,61 @@
+<div class="card-container mb-4">
+    <!-- <h3 class="main-title btn"><i class="bi bi-info-circle me-2"></i>Aquí puedes editar tu información</h3> -->
+    <div class="card-wrapper">
+        <div class="container">
+            <form [formGroup]="editUserForm">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input formControlName="name" type="text" class="form-control form-control-lg fs-6" placeholder="Nombre" required>
+                </div>
+                    <span class="error-label" *ngIf="editUserForm.controls['name'].invalid && isformSubmitted && editUserForm.controls['name'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['name'].invalid && isformSubmitted && editUserForm.controls['name'].errors?.['minlength']">Tiene que tener minimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['name'].invalid && isformSubmitted && editUserForm.controls['name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-vcard"></i>
+                    </span>
+                    <input formControlName="last_name" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido paterno" required>
+                </div>
+                    <span class="error-label" *ngIf="editUserForm.controls['last_name'].invalid && isformSubmitted && editUserForm.controls['last_name'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['last_name'].invalid && isformSubmitted && editUserForm.controls['last_name'].errors?.['minlength']">Tiene que tener minimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['last_name'].invalid && isformSubmitted && editUserForm.controls['last_name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-vcard"></i>
+                    </span>
+                    <input formControlName="mother_surname" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido materno"  required>
+                </div>
+                    <span class="error-label" *ngIf="editUserForm.controls['mother_surname'].invalid && isformSubmitted && editUserForm.controls['mother_surname'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['mother_surname'].invalid && isformSubmitted && editUserForm.controls['mother_surname'].errors?.['minlength']">Tiene que tener minimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="editUserForm.controls['mother_surname'].invalid && isformSubmitted && editUserForm.controls['mother_surname'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3 mb-4">
+                    <span class="input-group-text">
+                        <i class="bi bi-gender-ambiguous"></i>
+                    </span>
+                    <select formControlName="gender" id="gender" class="form-control form-select form-control-lg fs-6" required>
+                        <option hidden disabled selected value="">Genero</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="39 tipos de gays">39 tipos de gays 🏳️‍🌈</option>
+                    </select>
+                </div>
+                <span class="error-label" *ngIf=" editUserForm.controls['gender'].invalid && isformSubmitted && editUserForm.controls['gender'].errors?.['required']">No puede ir vacío</span>
+                <span class="mt-2 fw-bold text-danger">* Ingresa tu contraseña para guardar los cambios</span>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        <i class="bi bi-key"></i>
+                    </span>
+                    <input formControlName="password" type="password" class="form-control form-control-lg fs-6" placeholder="Password" required>
+                </div>
+                <span class="error-label" *ngIf="editUserForm.controls['password'].invalid && isformSubmitted && editUserForm.controls['password'].errors?.['required']">No puede ir vacío</span>
+                <span class="error-label" *ngIf="editUserForm.controls['password'].invalid && isformSubmitted && editUserForm.controls['password'].errors?.['minlength']">Tiene que tener minimo 3 caracteres</span>
+                <span class="error-label" *ngIf="editUserForm.controls['password'].invalid && isformSubmitted && editUserForm.controls['password'].errors?.['maxlength']">Solo se permiten 20 caracteres</span>
+                <div class="text-center my-4">
+                    <button class="btn btnLR" type="button" (click)="onSubmit()">Guardar cambios</button>
+                </div>
+               </form>
+        </div>
+    </div>
+</div>

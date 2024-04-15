@@ -1,0 +1,21 @@
+.btns{
+    height: 32px;
+    background: #814792;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.contenedor{
+    margin-top: 5%;
+    min-height: 70vh;
+}
+
+img{
+    width: 250px;
+    height: 250px;
+}

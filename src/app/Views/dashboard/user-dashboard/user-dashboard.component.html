@@ -1,0 +1,61 @@
+<div class="container-fluid g-0 cont">
+    <div class="sidenav" [class.sidenavOpen]="collapsed() === true" [class.sidenav]="collapsed() === false">
+        <div class="logo-container">
+            <button (click)="abrirSideNav(true)" class="logo">A</button>
+            <div [hidden]="collapsed() === false" class="logo-text"><span class="logo-span">API</span>arcamiento</div>
+            <button [hidden]="collapsed() === false" (click)="cerrarSideNav(false)" class="btn-close"></button>
+        </div>
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-person"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Mi perfíl</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="profileSettings" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-gear"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Configuración de la cuenta</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="myVehicles" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-car-front"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Mis vehiculos</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="incidentAlerts" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-exclamation-triangle"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Alertas de incidentes</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-house"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Regresar al inicio</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" (click)="logout()">
+                    <i class="sidenav-link-icon bi bi-box-arrow-right"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Cerrar sesión</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container" [hidden]="hiddenPhoto() === true && collapsed() === true">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <span>Dashboard</span>
+                <h2>{{ titleService.getTitle() }}</h2>
+            </div>
+            <div class="user-info" [hidden]="hiddenPhoto() === true">
+                <img src="../../../../assets/{{profilePhoto()}}.jpg" alt="ProfilePhoto" class="img-fluid">
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>

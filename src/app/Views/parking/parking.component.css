@@ -1,0 +1,9 @@
+.fondo{
+    background-color: var(--extra-light);
+  }
+
+@media (max-width: 767px) {
+    .row {
+      justify-content: center;
+    }
+  }

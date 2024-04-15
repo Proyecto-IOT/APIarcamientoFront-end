@@ -1,0 +1,80 @@
+<div class="row tamanio g-0">
+    <div class="col-lg-6 position-relative d-none d-lg-block">
+        <div class="bg-holder"></div>
+    </div>
+    <div class="col-lg-6">
+        <div class="row align-items-center justify-content-center h-100 g-0 px-4 px-sm-0 mt-5">
+            <div class="col col-sm-6 col-lg-7 col-xl-6">
+               <p class="d-flex justify-content-center mb-3 logo"><span class="logoSd">API</span>arcamiento</p>
+               <div class="text-center mb-4">
+                <h3 class="fw-bold">Sign-Up</h3>
+                <p class="text-secondary">Crea una cuenta</p>
+                <div class="position-relative">
+                    <hr class="text-secondary">
+                   </div>
+               </div>
+               <form [formGroup]="signupForm">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input formControlName="name" type="text" class="form-control form-control-lg fs-6" placeholder="Nombre" required>
+                </div>
+                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-vcard"></i>
+                    </span>
+                    <input formControlName="last_name" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido paterno" required>
+                </div>
+                    <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-vcard"></i>
+                    </span>
+                    <input formControlName="mother_surname" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido materno"  required>
+                </div>
+                    <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-gender-ambiguous"></i>
+                    </span>
+                    <select formControlName="gender" id="gender" class="form-control form-select form-control-lg fs-6" required>
+                        <option hidden disabled selected value="">Genero</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="39 tipos de gays">39 tipos de gays 🏳️‍🌈</option>
+                    </select>
+                </div>
+                <span class="error-label" *ngIf=" signupForm.controls['gender'].invalid && isformSubmitted && signupForm.controls['gender'].errors?.['required']">No puede estar vacío</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    <input formControlName="email" type="email" class="form-control form-control-lg fs-6" placeholder="Email" required>
+                </div>
+                <span class="error-label" *ngIf=" signupForm.controls['email'].invalid && isformSubmitted && signupForm.controls['email'].errors?.['required']">No puede estar vacío</span>
+                <span class="error-label" *ngIf=" signupForm.controls['email'].invalid && isformSubmitted && signupForm.controls['email'].errors?.['email']">Ingrese un correo electronico valido</span>
+                <span class="error-label" *ngIf=" signupForm.controls['email'].invalid && isformSubmitted && signupForm.controls['email'].errors?.['pattern']">Ingrese un correo electronico valido</span>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-key"></i>
+                    </span>
+                    <input formControlName="password" type="password" class="form-control form-control-lg fs-6" placeholder="Password" required>
+                </div>
+                <span class="error-label" *ngIf=" signupForm.controls['password'].invalid && isformSubmitted && signupForm.controls['password'].errors?.['required']">No puede ir vacío</span>
+                <span class="error-label" *ngIf="signupForm.controls['password'].invalid && isformSubmitted && signupForm.controls['password'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                <span class="error-label" *ngIf="signupForm.controls['password'].invalid && isformSubmitted && signupForm.controls['password'].errors?.['maxlength']">Solo se permiten 20 caracteres</span>
+                <button class="btn btn-lg w-100 btnLR mb-4 mt-3" type="button" (click)="onSubmit()">Registrarse</button>
+                <small class="d-flex justify-content-center text-secondary"><a routerLink="/login" ariaCurrentWhenActive="page"> 👉 IoTengo cuenta 👈 </a></small>
+               </form>
+            </div>
+        </div>
+    </div>
+</div>

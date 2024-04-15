@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --color1: #814792;
+  --color2: #6f2c6c;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --extra-light: #faf5ff;
+}
+
+.credits{
+  margin-bottom: 2rem;
+  font-size: 9px;
+}
+
+.menu{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.menu li{
+    list-style: none;
+}
+
+.menu li a{
+    font-size: 1em;
+    color: var(--text-dark);
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.menu li a:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.credit {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-dark);
+    cursor: default;
+  }
+
+ .menu li a.active{
+    opacity: 1;
+  }
+  
+  .credit span {
+    color: var(--color2);
+  }

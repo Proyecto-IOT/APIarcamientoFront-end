@@ -1,0 +1,85 @@
+<div class="card-container">
+    <!-- <h3 class="main-title badge"><i class="bi bi-info-circle me-2"></i>Aquí puedes editar y añadir vehiculos</h3> -->
+    <div class="card-wrapper">
+        <button class="btn btnLR ms-3" routerLink="/dashboard/addVehicle"><i class="bi bi-patch-plus"></i> Agregar vehículo</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" *ngFor="let vehicle of vehicles">
+                    <div class="card mb-3">
+                      <div class="row g-0">
+                        <div class="col-md-7">
+                          <div class="card-body">
+                            <h5 class="card-title">{{vehicle.license_plate}}</h5>
+                            <p class="card-text"><span class="label">Marca: </span>{{vehicle.brand}}</p>
+                            <p class="card-text"><span class="label">Modelo: </span>{{vehicle.model}}</p>
+                            <p class="card-text"><span class="label">Color: </span>{{vehicle.color}}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-5 my-auto" [hidden]="hiddenPhoto() === true">
+                          <img src="../../../../assets/car.png" class="img-fluid rounded-end" alt="car">
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button (click)="openModal(vehicle.vehicle_id)" class="btn btnEdit w-100" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i> Editar</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button (click)="eliminar(vehicle.vehicle_id)" class="btn btnDelete w-100" type="button"><i class="bi bi-trash"></i> Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div data-vehicle-id="" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar información del vehículo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="vehicleForm">
+            <div>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="Marca del vehículo">
+              </div>
+              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+            </div>
+            <div class="mt-4">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-speedometer"></i></span>
+                <input formControlName="model" type="text" class="form-control" id="model" placeholder="Modelo del vehículo">
+              </div>
+              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+            </div>
+            <div class="mt-4">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-palette"></i></span>
+                <input formControlName="color" type="text" class="form-control" id="color" placeholder="Color">
+              </div>
+              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btnDelete" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="guardarCambios(selectedVehicleId)" type="button" class="btn btnLR">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

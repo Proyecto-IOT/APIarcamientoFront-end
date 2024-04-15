@@ -1,0 +1,49 @@
+<div class="card-container">
+    <!-- <h3 class="main-title"></h3> -->
+    <div class="card-wrapper">
+        <div class="container">
+            <form [formGroup]="vehicleForm">
+                <div class="mt-4">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-car-front"></i></span>
+                    <input formControlName="license_plate" type="text" class="form-control" id="license_plate" placeholder="Número de Placa">
+                  </div>
+                  <span class="error-label" *ngIf="vehicleForm.controls['license_plate'].invalid && isformSubmitted && vehicleForm.controls['license_plate'].errors?.['required']">No puede ir vacío</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['license_plate'].invalid && isformSubmitted && vehicleForm.controls['license_plate'].errors?.['minlength']">Tiene que tener mínimo 6 caracteres</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['license_plate'].invalid && isformSubmitted && vehicleForm.controls['license_plate'].errors?.['maxlength']">Solo se permiten 9 caracteres</span>
+                </div>
+                <div class="mt-4">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                    <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="Marca del vehículo">
+                  </div>
+                  <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['required']">No puede ir vacío</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+                </div>
+                <div class="mt-4">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-speedometer"></i></span>
+                    <input formControlName="model" type="text" class="form-control" id="model" placeholder="Modelo del vehículo">
+                  </div>
+                  <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['required']">No puede ir vacío</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+                </div>
+                <div class="mt-4">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-palette"></i></span>
+                    <input formControlName="color" type="text" class="form-control" id="color" placeholder="Color">
+                  </div>
+                  <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['required']">No puede ir vacío</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                  <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+                </div>
+                <div class="text-center my-4">
+                    <button class="btn btnLR" type="button" (click)="onSubmit()">Agregar vehículo</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+

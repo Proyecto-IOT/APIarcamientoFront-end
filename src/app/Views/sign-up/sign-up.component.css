@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root {
+  --color1: #814792;
+  --color2: #6f2c6c;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --extra-light: #faf5ff;
+}
+
+.bg-holder {
+  position: absolute;
+  width: 100%;
+  min-height: 108%;
+  top: 0;
+  left: 0;
+  background-image: url(../../../assets/img2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tamanio{
+  min-height: 160vh;
+}
+
+.error-label {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: default;
+}
+
+.logoSd {
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: default;
+  color: var(--color2);
+}
+
+.btnLR {
+    background-color: var(--color2);
+    color: var(--extra-light);
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+  
+  .btnLR:active,
+  .btnLR:focus {
+    background-color: var(--color2);
+    color: var(--extra-light);
+  }
+
+  .form-control:focus {
+    border-color: var(--color1);
+    box-shadow: 0 0 0 0.25rem rgba(141, 83, 164, 0.336);
+  }
+  
+  .form-select option:hover {
+    background-color: var(--color2);
+    color: #fff; /* Opcional: cambia el color del texto si lo deseas */
+  }
+  
+
+  .form-control:active {
+    border-color: var(--color1);
+  }  
+
+  small{
+    cursor: default;
+  }
+
+  small a{
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  small a:hover{
+    color: var(--color1);
+  }

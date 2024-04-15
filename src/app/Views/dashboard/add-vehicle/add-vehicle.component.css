@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --color1: #814792;
+  --color2: #6f2c6c;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --extra-light: #faf5ff;
+}
+
+.card-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 4rem;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.main-title {
+  color: var(--color2);
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.error-label {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.btnLR {
+  background-color: var(--color2);
+  color: var(--extra-light);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.btnLR:active,
+.btnLR:focus {
+  background-color: var(--color2);
+  color: var(--extra-light);
+}
+
+.form-control:focus {
+  border-color: var(--color1);
+  box-shadow: 0 0 0 0.25rem rgba(141, 83, 164, 0.336);
+}
+
+.form-select option:hover {
+  background-color: var(--color2);
+  color: #fff;
+}
+
+.form-control:active {
+  border-color: var(--color1);
+}

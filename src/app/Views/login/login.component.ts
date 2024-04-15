@@ -1,0 +1,51 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UserService } from '../../core/services/user.service';
+import { CookieService } from 'ngx-cookie-service';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export default class LoginComponent {
+  isformSubmitted: boolean = false;
+  token: string | null = null;
+
+  loginForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}')]),
+    password: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+  })
+  
+  constructor(private userService: UserService, private router: Router, private cookies: CookieService){}
+
+  onSubmit(){
+    const isformSubmitted = this.loginForm.valid;
+    this.isformSubmitted = true;
+    const userData = this.loginForm.value;
+
+    if(isformSubmitted){
+      this.userService.login(userData).subscribe(
+        (response) => {
+          this.cookies.set('token', response.data.token);
+          window.location.href = '/home'
+        },
+        (error) =>{
+          Swal.fire({
+            title: 'Error',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      )
+    }
+  }
+
+  
+}

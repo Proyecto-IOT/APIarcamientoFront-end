@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark-bg-transparent" *ngIf="mostrarNavbar">
+    <div class="container containerStyle">
+      <!-- <img src="assets/logo.png" alt="logo"> la verdad no me convence jajaja -->
+      <span class="logo"><strong class="change">API</strong>arcamiento</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="sidebar offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header text-white border-button">
+          <h5 class="offcanvas-title logo" id="offcanvasNavbarLabel"><strong class="change">API</strong>arcamiento</h5>
+          <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-lg-row flex-column p-4 p-lg-0">
+          <ul class="navbar-nav justify-content-center fs-5 align-items-center flex-grow-1 pe-3">
+            <li class="nav-item mx-2">
+              <a class="nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a> <!-- Esto estoy en duda, no se si dejarlo y que el "logo" te redireccione hacia el home -->
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" routerLink="/parking" routerLinkActive="active" ariaCurrentWhenActive="page" >Estacionamiento</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a routerLink="/aboutUs" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link">Sobre nosotros</a>
+            </li>
+          </ul>
+          <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+            <button *ngIf="!userService.isAuthenticated()" routerLink="/login" ariaCurrentWhenActive="page" class="btn btnLR">Iniciar sesión</button>
+            <button *ngIf="!userService.isAuthenticated()" routerLink="/sign-Up" ariaCurrentWhenActive="page" class="btn btnLR">Registrarse</button>
+            <div *ngIf="userService.isAuthenticated()" class="dropdown">  
+              <button class="btn btnLR dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person text-white"></i> {{name()}}
+              </button>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/dashboard/profile">Mi perfíl</a></li>
+                <li><a (click)="logout()" class="dropdown-item text-black" >Cerrar sesión</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
