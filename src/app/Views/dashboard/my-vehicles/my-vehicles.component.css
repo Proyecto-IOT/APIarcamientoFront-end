@@ -96,4 +96,9 @@
   font-weight: 600;
 }
 
+.error-label {
+  color: red;
+  font-size: 0.875rem;
+}
+
 @media (max-width: 500px){}

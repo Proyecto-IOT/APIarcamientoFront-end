@@ -21,7 +21,7 @@
                       </div>
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-6" [class.mb-2]="hiddenPhoto() === true">
                             <button (click)="openModal(vehicle.vehicle_id)" class="btn btnEdit w-100" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i> Editar</button>
                           </div>
                           <div class="col-md-6">
@@ -46,33 +46,42 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="vehicleForm">
+          <form [formGroup]="updateVehicleForm">
             <div>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-car-front"></i></span>
+                <input formControlName="license_plate" type="text" class="form-control" id="license_plate" placeholder="Número de Placa">
+              </div>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['license_plate'].invalid && isformSubmitted && updateVehicleForm.controls['license_plate'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['license_plate'].invalid && isformSubmitted && updateVehicleForm.controls['license_plate'].errors?.['minlength']">Tiene que tener mínimo 6 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['license_plate'].invalid && isformSubmitted && updateVehicleForm.controls['license_plate'].errors?.['maxlength']">Solo se permiten 9 caracteres</span>
+            </div>
+            <div class="mt-4">
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-tag"></i></span>
                 <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="Marca del vehículo">
               </div>
-              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['required']">No puede ir vacío</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['brand'].invalid && isformSubmitted && vehicleForm.controls['brand'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['brand'].invalid && isformSubmitted && updateVehicleForm.controls['brand'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['brand'].invalid && isformSubmitted && updateVehicleForm.controls['brand'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['brand'].invalid && isformSubmitted && updateVehicleForm.controls['brand'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
             </div>
             <div class="mt-4">
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-speedometer"></i></span>
                 <input formControlName="model" type="text" class="form-control" id="model" placeholder="Modelo del vehículo">
               </div>
-              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['required']">No puede ir vacío</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['model'].invalid && isformSubmitted && vehicleForm.controls['model'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['model'].invalid && isformSubmitted && updateVehicleForm.controls['model'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['model'].invalid && isformSubmitted && updateVehicleForm.controls['model'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['model'].invalid && isformSubmitted && updateVehicleForm.controls['model'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
             </div>
             <div class="mt-4">
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-palette"></i></span>
                 <input formControlName="color" type="text" class="form-control" id="color" placeholder="Color">
               </div>
-              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['required']">No puede ir vacío</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
-              <span class="error-label" *ngIf="vehicleForm.controls['color'].invalid && isformSubmitted && vehicleForm.controls['color'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['color'].invalid && isformSubmitted && updateVehicleForm.controls['color'].errors?.['required']">No puede ir vacío</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['color'].invalid && isformSubmitted && updateVehicleForm.controls['color'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+              <span class="error-label" *ngIf="updateVehicleForm.controls['color'].invalid && isformSubmitted && updateVehicleForm.controls['color'].errors?.['maxlength']">Solo se permiten 30 caracteres</span>
             </div>
           </form>
         </div>

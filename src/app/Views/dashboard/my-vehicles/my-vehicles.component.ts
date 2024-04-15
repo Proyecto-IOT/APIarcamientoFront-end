@@ -17,9 +17,12 @@ export default class MyVehiclesComponent {
   hiddenPhoto = signal<boolean>(false);
   isformSubmitted: boolean = false;
   selectedVehicleId: Number = 0;
-  vehicles: any = {};
+  vehicleInfo: any = {};
+  vehicles: any[] = [];
 
-  vehicleForm = new FormGroup({
+  updateVehicleForm = new FormGroup({
+    vehicle_id: new FormControl("", [Validators.required]),
+    license_plate: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(9)]),
     brand: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     model: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     color: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)])
@@ -46,12 +49,31 @@ export default class MyVehiclesComponent {
   }
 
   
-openModal(vehicle_id: number): void{
+openModal(vehicle_id: Number): void{
   this.selectedVehicleId = vehicle_id;
   const modal = document.getElementById('exampleModal');
   if(modal){
     modal.setAttribute('data-vehicle-id', String(vehicle_id));
-    //FALTA LA CONSULTA INDIVIDUAL 😿
+    this.vehicleService.searchVehicle(vehicle_id).subscribe(
+      (response) =>{
+        this.vehicleInfo = response.data;
+        this.updateVehicleForm.patchValue({
+         vehicle_id: response.data.vehicle_id,
+         license_plate: response.data.license_plate,
+         brand: response.data.brand,
+         model: response.data.model,
+         color: response.data.color
+        })
+      },
+      (error) =>{
+        Swal.fire({
+          title: 'Error',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    )
   }
 }
 
@@ -67,37 +89,38 @@ openModal(vehicle_id: number): void{
     }
   }
 
-  guardarCambios(vehicle_id: Number): void{
+  guardarCambios(vehicle_id: Number){
     Swal.fire({
       title: "Estas seguro que quieres guardar los cambios?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar",
+      confirmButtonText: "Guardar cambios",
       cancelButtonText: "No, cancelar!"
     }).then((result) => {
       if (result.isConfirmed) {
-        const isFormValid = this.vehicleForm.valid;
+        const isFormValid = this.updateVehicleForm.valid;
         this.isformSubmitted = true;
         if(isFormValid){
-          const vehicleData = this.vehicleForm.value;
-         this.vehicleService.newVehicle(vehicleData).subscribe(
-            (response) => {
+          const vehicleData = this.updateVehicleForm.value;
+          console.log(vehicleData);
+          this.vehicleService.updateVehicle(vehicleData, vehicle_id).subscribe(
+            (response) =>{
               Swal.fire({
-                title: '¡Se han actualizado los datos con éxito!',
-                icon: 'success',
-              }).then(() => {
-                  this.router.navigateByUrl('/dashboard/myVehicles');
-              });
+                title: "Se han guardado los cambios!",
+                icon: "success"
+              }).then(() =>{
+                window.location.reload();
+              });  
             },
-            (error) => {
+            (error) =>{
               Swal.fire({
                 title: 'Error',
                 text: error,
                 icon: 'error',
                 confirmButtonText: 'Aceptar'
-              });
+              });  
             }
           )
         }
@@ -105,7 +128,7 @@ openModal(vehicle_id: number): void{
     });
   }
 
-  eliminar(vehicle_id: number): void{
+  eliminar(vehicle_id: Number): void{
     Swal.fire({
       title: "Estas seguro que quieres eliminar esto?",
       icon: "warning",

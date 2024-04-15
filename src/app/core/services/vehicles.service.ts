@@ -28,4 +28,8 @@ export class VehiclesService {
   deleteVehicle(vehicle_id: Number): Observable<any>{
     return this.http.delete(`${this.vehiclesUrl}/delete/${vehicle_id}`);
   }
+
+  searchVehicle(vehicle_id: Number): Observable<any>{
+    return this.http.get<any>(`${this.vehiclesUrl}/search/${vehicle_id}`);
+  }
 }
