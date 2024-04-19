@@ -45,3 +45,8 @@
     color: #fff;
     font-weight: 600;
   }
+
+  .img-fluid{
+    height: 85px;
+    width: 85px;
+  }

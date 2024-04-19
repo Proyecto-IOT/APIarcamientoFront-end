@@ -109,6 +109,4 @@ export default class UserDashboardComponent {
           }
         });
     }
-
-    
 }
