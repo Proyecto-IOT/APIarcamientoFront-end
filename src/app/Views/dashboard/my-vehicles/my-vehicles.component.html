@@ -1,10 +1,12 @@
 <div class="card-container">
-    <!-- <h3 class="main-title badge"><i class="bi bi-info-circle me-2"></i>Aquí puedes editar y añadir vehiculos</h3> -->
+  <div class="col-md-6 mb-3">
+    <span class="badge text-bg text-wrap"><i class="bi bi-info-circle"></i> Administra tus vehículos, puedes borrar, editar la información y/o añadir uno</span>
+  </div>
     <div class="card-wrapper">
         <button class="btn btnLR ms-3" routerLink="/dashboard/addVehicle"><i class="bi bi-patch-plus"></i> Agregar vehículo</button>
         <div class="container">
             <div class="row">
-                <div class="col-md-4" *ngFor="let vehicle of vehicles">
+                <div class="col-md-4" *ngFor="let vehicle of vehicles | paginate: { itemsPerPage: 3, currentPage: p, id: 'vehiclesss'}">
                     <div class="card mb-3">
                       <div class="row g-0">
                         <div class="col-md-7">
@@ -33,6 +35,12 @@
                   </div>
             </div>
           </div>
+          <div [hidden]="noHay() === false" class="container d-flex justify-content-center align-items-center">
+            <h4 [hidden]="noHay() === false" class="fw-bold">No tienes vehículos 😿</h4>
+          </div>   
+          <div class="container d-flex justify-content-center align-items-center">
+            <pagination-controls class="my-pagination" (pageChange)="p = $event" id="vehiclesss" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>        
     </div>
 </div>
 

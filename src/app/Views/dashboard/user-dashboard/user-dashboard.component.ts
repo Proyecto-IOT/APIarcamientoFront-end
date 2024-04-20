@@ -60,8 +60,8 @@ export default class UserDashboardComponent {
   logout(){
     this.userService.logout().subscribe(
       (response) =>{
-        this.cookies.delete('token');
         this.router.navigate(['/login']);
+        this.cookies.delete('token');
       },
       (error) =>{
         Swal.fire({

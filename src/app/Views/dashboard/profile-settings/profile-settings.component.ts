@@ -21,7 +21,8 @@ export default class ProfileSettingsComponent {
     last_name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(200)]),
     mother_surname: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(200)]),
     gender: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+    email: new FormControl("", [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}')]),
+    password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
   })
 
   ngOnInit(): void{
@@ -33,6 +34,7 @@ export default class ProfileSettingsComponent {
           last_name: response.data.last_name,
           mother_surname: response.data.mother_surname,
           gender: response.data.gender,
+          email: response.data.email
         })
       },
       (error) =>{

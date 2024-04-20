@@ -1,25 +1,61 @@
 <div class="card-container">
     <!-- <h3 class="main-title">Bienvenidx</h3> -->
     <div class="card-wrapper">
+        <h3>Alertas de humo</h3>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4"> <!-- DESDE ACA SE ITERA -->
-                    <div class="card mb-3">
-                      <div class="row g-0">
-                        <div class="col-md-7">
-                          <div class="card-body">
-                            <h5 class="card-title">Tipo de incidente</h5>
-                            <p class="card-text"><span class="label">Fecha: </span>...</p>
-                          </div>
+          <div class="row">
+              <div class="col-md-4" *ngFor="let alertaHumo of alertasHumo | paginate: { itemsPerPage: 6, currentPage: p, id: 'humoAlerts'}"> <!-- DESDE ACA SE ITERA -->
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-7">
+                        <div class="card-body">
+                          <p class="card-text"><span class="label">Fecha y hora: </span>{{alertaHumo.Fecha}}</p>
                         </div>
-                        <div class="col-md-5 my-auto" [hidden]="hiddenPhoto() === true">
-                          <img src="../../../../assets/alert.png" class="img-fluid" alt="car">
-                        </div>
+                      </div>
+                      <div class="col-md-5 my-auto" [hidden]="hiddenPhoto() === true">
+                        <img src="../../../../assets/alert.png" class="img-fluid humo" alt="car">
                       </div>
                     </div>
                   </div>
-            </div>
+                </div>
           </div>
+        </div>
+        <div [hidden]="noHay() === true" class="container d-flex justify-content-center align-items-center">
+          <h4 [hidden]="noHay() === true" class="fw-bold">No hay alertas 😿</h4>
+        </div> 
+        <div class="container d-flex justify-content-center align-items-center">
+          <pagination-controls class="my-pagination" (pageChange)="p = $event" id="humoAlerts" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
     </div>
+</div>
+
+<div class="card-container mt-4 mb-4">
+  <div class="card-wrapper">
+    <h3>Alertas de sonido</h3>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-4" *ngFor="let alertaSonido of alertasSonido | paginate: { itemsPerPage: 6, currentPage: ps, id: 'sonidoAlert'}"> <!-- DESDE ACA SE ITERA -->
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <p class="card-text"><span class="label">Fecha y hora: </span>{{alertaSonido.Fecha}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-5 my-auto" [hidden]="hiddenPhoto() === true">
+                    <img src="../../../../assets/noise.png" class="img-fluid noise" alt="car">
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+    <div [hidden]="noHay() === true" class="container d-flex justify-content-center align-items-center">
+      <h4 [hidden]="noHay() === true" class="fw-bold">No hay alertas 😿</h4>
+    </div>  
+    <div class="container d-flex justify-content-center align-items-center">
+      <pagination-controls class="my-pagination" (pageChange)="p = $event" id="sonidoAlert" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+  </div>
 </div>
 

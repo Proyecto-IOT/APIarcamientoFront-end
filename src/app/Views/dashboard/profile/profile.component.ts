@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UserService } from '../../../core/services/user.service';
 import { Router } from '@angular/router';
+import { Sign } from 'crypto';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export default class ProfileComponent {
   profilePhoto = signal<string>("");
-  msg: string = "";
+  msg = signal<string>("");
   userInfo: any = {}
 
   ngOnInit(): void{
@@ -20,6 +21,14 @@ export default class ProfileComponent {
       (response) =>{
         this.userInfo = response.data;
         this.profilePhoto.set(response.data.gender);
+
+        if(response.data.gender == 'Femenino'){
+          this.msg.set('Bienvenida');
+        }else if(response.data.gender == 'Masculino'){
+          this.msg.set('Bienvenido');
+        }else if(response.data.gender == '39 tipos de gays'){
+          this.msg.set('Bienvenidx');
+        }
       },
       (error) =>{
         Swal.fire({

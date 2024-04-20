@@ -69,3 +69,6 @@
   border-color: var(--color1);
 }
 
+.text-bg{
+  background-color: var(--color1);
+}

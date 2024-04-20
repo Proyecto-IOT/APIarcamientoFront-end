@@ -20,8 +20,8 @@
                     </span>
                     <input formControlName="name" type="text" class="form-control form-control-lg fs-6" placeholder="Nombre" required>
                 </div>
-                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['required']">No puede ir vacío</span>
-                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
+                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['required']">No puede estar vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['minlength']">Tiene que tener mínimo 8 caracteres</span>
                     <span class="error-label" *ngIf="signupForm.controls['name'].invalid && isformSubmitted && signupForm.controls['name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
                 <div class="input-group mt-3">
                     <span class="input-group-text">
@@ -29,7 +29,7 @@
                     </span>
                     <input formControlName="last_name" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido paterno" required>
                 </div>
-                    <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['required']">No puede estar vacío</span>
                     <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
                     <span class="error-label" *ngIf="signupForm.controls['last_name'].invalid && isformSubmitted && signupForm.controls['last_name'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
                 <div class="input-group mt-3">
@@ -38,7 +38,7 @@
                     </span>
                     <input formControlName="mother_surname" type="text" class="form-control form-control-lg fs-6" placeholder="Apellido materno"  required>
                 </div>
-                    <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['required']">No puede ir vacío</span>
+                    <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['required']">No puede estar vacío</span>
                     <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['minlength']">Tiene que tener mínimo 3 caracteres</span>
                     <span class="error-label" *ngIf="signupForm.controls['mother_surname'].invalid && isformSubmitted && signupForm.controls['mother_surname'].errors?.['maxlength']">Solo se permiten 200 caracteres</span>
                 <div class="input-group mt-3">

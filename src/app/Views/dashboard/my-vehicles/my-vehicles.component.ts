@@ -5,11 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { VehiclesService } from '../../../core/services/vehicles.service';
 import Swal from 'sweetalert2';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-my-vehicles',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NgxPaginationModule],
   templateUrl: './my-vehicles.component.html',
   styleUrl: './my-vehicles.component.css'
 })
@@ -19,6 +20,8 @@ export default class MyVehiclesComponent {
   selectedVehicleId: Number = 0;
   vehicleInfo: any = {};
   vehicles: any[] = [];
+  p: number | undefined = 1;
+  noHay = signal<boolean>(true);
 
   updateVehicleForm = new FormGroup({
     vehicle_id: new FormControl("", [Validators.required]),
@@ -35,6 +38,7 @@ export default class MyVehiclesComponent {
       (response) =>{
         if(response.result){
           this.vehicles = response.data;
+          this.noHay.set(false);
         }
       },
       (error) =>{
@@ -48,46 +52,45 @@ export default class MyVehiclesComponent {
     )
   }
 
-  
-openModal(vehicle_id: Number): void{
-  this.selectedVehicleId = vehicle_id;
-  const modal = document.getElementById('exampleModal');
-  if(modal){
-    modal.setAttribute('data-vehicle-id', String(vehicle_id));
-    this.vehicleService.searchVehicle(vehicle_id).subscribe(
-      (response) =>{
-        this.vehicleInfo = response.data;
-        this.updateVehicleForm.patchValue({
-         vehicle_id: response.data.vehicle_id,
-         license_plate: response.data.license_plate,
-         brand: response.data.brand,
-         model: response.data.model,
-         color: response.data.color
-        })
-      },
-      (error) =>{
-        Swal.fire({
-          title: 'Error',
-          text: error,
-          icon: 'error',
-          confirmButtonText: 'Aceptar'
-        });
-      }
-    )
-  }
-}
-
-  constructor(private vehicleService: VehiclesService, private router: Router, private breakPointObserver: BreakpointObserver){
-    this.breakPoint$.subscribe(() => this.breakpointChanges())
-  }
-
-  breakpointChanges(): void{
-    if(this.breakPointObserver.isMatched(`(max-width: 500px)`)){
-      this.hiddenPhoto.set(true);
-    }else{
-      this.hiddenPhoto.set(false);
+  openModal(vehicle_id: Number): void{
+    this.selectedVehicleId = vehicle_id;
+    const modal = document.getElementById('exampleModal');
+    if(modal){
+      modal.setAttribute('data-vehicle-id', String(vehicle_id));
+      this.vehicleService.searchVehicle(vehicle_id).subscribe(
+        (response) =>{
+          this.vehicleInfo = response.data;
+          this.updateVehicleForm.patchValue({
+          vehicle_id: response.data.vehicle_id,
+          license_plate: response.data.license_plate,
+          brand: response.data.brand,
+          model: response.data.model,
+          color: response.data.color
+          })
+        },
+        (error) =>{
+          Swal.fire({
+            title: 'Error',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      )
     }
   }
+
+    constructor(private vehicleService: VehiclesService, private router: Router, private breakPointObserver: BreakpointObserver){
+      this.breakPoint$.subscribe(() => this.breakpointChanges())
+    }
+
+    breakpointChanges(): void{
+      if(this.breakPointObserver.isMatched(`(max-width: 500px)`)){
+        this.hiddenPhoto.set(true);
+      }else{
+        this.hiddenPhoto.set(false);
+      }
+    }
 
   guardarCambios(vehicle_id: Number){
     Swal.fire({

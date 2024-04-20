@@ -101,4 +101,12 @@
   font-size: 0.875rem;
 }
 
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--color1);
+}
+
+.text-bg{
+  background-color: var(--color1);
+}
+
 @media (max-width: 500px){}

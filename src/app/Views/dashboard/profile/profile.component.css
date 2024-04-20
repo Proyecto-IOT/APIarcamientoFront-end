@@ -40,3 +40,7 @@
 .infoLabel {
   font-weight: 600;
 }
+
+.text-bg{
+  background-color: var(--color1);
+}
