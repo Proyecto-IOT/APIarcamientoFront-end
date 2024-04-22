@@ -2,16 +2,20 @@
   <span class="NoDisponible">Esta función está disponible tanto en la aplicación como en la versión de escritorio</span>
   <img src="../../../assets/503.png" alt="Error503" class="img-fluid">
 </div>
-
+<!-- PARKING -->
 <div class="fondo" [hidden]="hiddeParking() === true">
   <div class="container">
     <div class="row">
       <div class="col-md-4 parking-spot" *ngFor="let spot of spotsOcupados">
         <div class="numCajon"><span>{{spot.parking_id}}</span></div>
-        <img class="carImg" src="../../../assets/car.png" alt="car" [hidden]="spot.is_active === 0">
+        <img (click)="openModal(spot.parking_id)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="carImg" src="../../../assets/car.png" alt="car" [hidden]="spot.is_active === 0">
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="seccText">SECCIÓN 1</h1>
+      </div>
+    </div>
     <div class="row separacion">
       <div class="col-md-4 parking-spotI">
         <div class="numCajon"><span>4</span></div>
@@ -23,8 +27,6 @@
         <div class="numCajon"><span>6</span></div>
       </div>
     </div>
-    
-
     <div class="row">
       <div class="col-md-4 parking-spot">
         <div class="numCajon"><span>7</span></div>
@@ -36,7 +38,11 @@
         <div class="numCajon"><span>9</span></div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="seccText">SECCIÓN 2</h1>
+      </div>
+    </div>
     <div class="row separacion">
       <div class="col-md-4 parking-spotF">
         <div class="numCajon"><span>4</span></div>
@@ -46,6 +52,24 @@
       </div>
       <div class="col-md-4 parking-spotF">
         <div class="numCajon"><span>6</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INFO -->
+<div data-spot-id="" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Información</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btnDelete" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

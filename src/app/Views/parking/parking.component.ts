@@ -15,6 +15,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export default class ParkingComponent {
   spotsOcupados: any[] = [];
   hiddeParking = signal<boolean>(false);
+  selectedSpotId: Number = 0;
 
   readonly breakPoint$ = this.breakPointObserver.observe(`(max-width: 500px)`);
 
@@ -49,6 +50,15 @@ export default class ParkingComponent {
         });
       }
     )
+  }
+
+  openModal(spot_id: Number): void{
+    this.selectedSpotId = spot_id;
+    const modal = document.getElementById('exampleModal');
+    if(modal){
+      modal.setAttribute('data-spot-id', String(spot_id));
+      console.log(spot_id);
+    }
   }
 
   ngOndestroy(): void{
