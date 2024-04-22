@@ -54,6 +54,12 @@ export const routes: Routes = [
         title: 'Agregar vehículo',
         loadComponent: () => import('./Views/dashboard/add-vehicle/add-vehicle.component'),
         canActivate: [tokenGuard],
+      },
+      {
+        path: 'allSensors',
+        title: 'Todos los registros',
+        loadComponent: () => import('./Views/dashboard/all-registros/all-registros.component'),
+        canActivate: [tokenGuard],
       }
     ],
   },

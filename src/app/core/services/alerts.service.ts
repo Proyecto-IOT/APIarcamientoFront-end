@@ -32,4 +32,11 @@ export class AlertsService {
       takeUntil(this.stopPolling)
     )
   }
+
+  getallSensors(): Observable<any>{
+    return timer(0, 60000).pipe(
+      switchMap(() => this.http.get(`${this.alertsUrl}/all`)),
+      takeUntil(this.stopPolling)
+    )
+  }
 }
