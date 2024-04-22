@@ -53,5 +53,18 @@
   font-size: 1rem;
  }
 
+ .btnDelete:active,
+.btnDelete:focus {
+  background-color: #E97777;
+  color: #fff;
+}
+
+.btnDelete{
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  background-color: #E97777;
+}
+
 
 @media (max-width: 500px) {}

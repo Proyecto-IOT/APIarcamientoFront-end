@@ -16,6 +16,7 @@ export default class ParkingComponent {
   spotsOcupados: any[] = [];
   hiddeParking = signal<boolean>(false);
   selectedSpotId: Number = 0;
+  infOcupate: any = {};
 
   readonly breakPoint$ = this.breakPointObserver.observe(`(max-width: 500px)`);
 
@@ -39,7 +40,6 @@ export default class ParkingComponent {
     this.parkingService.getEstacionados().subscribe(
       (response) =>{
         this.spotsOcupados = response.data;
-        console.log(this.spotsOcupados);
       },
       (error) =>{
         Swal.fire({
@@ -58,6 +58,20 @@ export default class ParkingComponent {
     if(modal){
       modal.setAttribute('data-spot-id', String(spot_id));
       console.log(spot_id);
+      const data = '';
+      this.parkingService.getInfoEstacionado(data, this.selectedSpotId).subscribe(
+        (response) => {
+          this.infOcupate = response.data;
+        },
+        (error) =>{
+          Swal.fire({
+            title: 'Error',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      )
     }
   }
 

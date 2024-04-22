@@ -20,4 +20,8 @@ export class ParkingService {
   getEstacionados(): Observable<any>{
     return this.http.get<any>(`${environment.apiUrlBase}arduino/refresh`);
   }
+
+  getInfoEstacionado(data: any, spot_id: Number): Observable<any>{
+    return this.http.post(`${environment.apiUrlBase}vehicle/ocupate/${spot_id}`, data);
+  }
 }

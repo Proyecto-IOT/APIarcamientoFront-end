@@ -51,6 +51,7 @@ export default class AlertsComponent {
       (response) => {
         this.alertasHumo = response.data.Data;
         this.noHay.set(true);
+        console.log(this.alertasHumo);
       },
       (error) =>{
         Swal.fire({
@@ -62,6 +63,8 @@ export default class AlertsComponent {
       }
     );
   }
+
+  
 
   getSonidoAlertas(){
     const idSensor = this.alertas.value;
