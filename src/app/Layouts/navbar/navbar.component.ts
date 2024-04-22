@@ -17,15 +17,18 @@ export class NavbarComponent {
   token: string | null = null;
   name = signal<string>("");
   userInfo: any = {};
+  hidde = signal<boolean>(false);
 
   ngOnInit(): void{
     this.userService.getUserInfo().subscribe(
       (response) =>{
         if(response.result){
+          this.hidde.set(true);
           this.name.set(response.data.name);
         }
       },
       (error) =>{
+        this.hidde.set(false);
         console.error('No se recibieron datos');
       }
     )

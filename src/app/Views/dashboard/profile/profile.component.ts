@@ -31,12 +31,24 @@ export default class ProfileComponent {
         }
       },
       (error) =>{
-        Swal.fire({
-          title: 'Error',
-          text: error,
-          icon: 'error',
-          confirmButtonText: 'Aceptar'
-        }).then((result) => {
+        let errorMessage = '';
+          if (error.errors && typeof error.errors === 'object') {
+            errorMessage += '\nLos datos ingresados no cumplen con lo pedido: \n';
+            for (const field in error.errors) {
+              if (error.errors.hasOwnProperty(field)) {
+                errorMessage += `\n${error.errors[field][0]}\n`;
+              }
+            }
+        } 
+        else{
+          errorMessage += ' ' + error.msg;
+        }
+          Swal.fire({
+            title: 'Error',
+            text: errorMessage,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          }).then((result) => {
           if (result.isConfirmed) {
            this.router.navigateByUrl('profile')
           }

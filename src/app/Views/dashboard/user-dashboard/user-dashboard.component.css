@@ -25,7 +25,7 @@
 .sidenavOpen{
     left: 0rem;
     width: 20rem;
-    height: 100vh;
+    min-height: 100vh;
     background: #fff;
     transition: all 0.5s ease;
 }

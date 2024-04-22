@@ -5,8 +5,7 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(catchError(handleErrorResponse));
 
   function handleErrorResponse(error: HttpErrorResponse){
-    const errorResponse = `${error.error.msg}`;
-    console.log(errorResponse)
-    return throwError(() => errorResponse); 
+    
+    return throwError(() => error.error);
   }
 };

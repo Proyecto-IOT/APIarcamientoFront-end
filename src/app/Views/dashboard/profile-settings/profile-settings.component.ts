@@ -79,9 +79,21 @@ export default class ProfileSettingsComponent {
               });
             },
             (error) => {
+              let errorMessage = '';
+              if (error.errors && typeof error.errors === 'object') {
+                errorMessage += '\nLos datos ingresados no cumplen con lo pedido: \n';
+                for (const field in error.errors) {
+                  if (error.errors.hasOwnProperty(field)) {
+                    errorMessage += `\n${error.errors[field][0]}\n`;
+                  }
+                }
+            } 
+            else{
+              errorMessage += ' ' + error.msg;
+            }
               Swal.fire({
                 title: 'Error',
-                text: error,
+                text: errorMessage,
                 icon: 'error',
                 confirmButtonText: 'Aceptar'
               });

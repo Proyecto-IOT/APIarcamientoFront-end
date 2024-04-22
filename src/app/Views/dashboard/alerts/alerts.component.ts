@@ -54,17 +54,27 @@ export default class AlertsComponent {
         console.log(this.alertasHumo);
       },
       (error) =>{
-        Swal.fire({
-          title: 'Error',
-          text: error,
-          icon: 'error',
-          confirmButtonText: 'Aceptar'
-        });
+        let errorMessage = '';
+          if (error.errors && typeof error.errors === 'object') {
+            errorMessage += '\nLos datos ingresados no cumplen con lo pedido: \n';
+            for (const field in error.errors) {
+              if (error.errors.hasOwnProperty(field)) {
+                errorMessage += `\n${error.errors[field][0]}\n`;
+              }
+            }
+        } 
+        else{
+          errorMessage += ' ' + error.msg;
+        }
+          Swal.fire({
+            title: 'Error',
+            text: errorMessage,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
       }
     );
   }
-
-  
 
   getSonidoAlertas(){
     const idSensor = this.alertas.value;
@@ -84,4 +94,7 @@ export default class AlertsComponent {
     );
   }
 
+  ngOnDestroy(): void{
+    this.alertService.stopDataPolling();
+  }
 }

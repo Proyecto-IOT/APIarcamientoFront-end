@@ -11,12 +11,13 @@ export const routes: Routes = [
     path: 'parking',
     title: 'Estacionamiento',
     loadComponent: () => import('./Views/parking/parking.component'),
+    canActivate: [tokenGuard],
   },
-  {
+  /*{
     path: 'aboutUs',
     title: 'Sobre nosotros',
     loadComponent: () => import('./Views/about-us/about-us.component'),
-  },
+  },*/
   {
     path: 'dashboard',
     title: 'Dashaboard',

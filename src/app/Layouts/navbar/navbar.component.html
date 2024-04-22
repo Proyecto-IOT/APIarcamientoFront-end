@@ -16,16 +16,16 @@
             <li class="nav-item mx-2">
               <a class="nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a> <!-- Esto estoy en duda, no se si dejarlo y que el "logo" te redireccione hacia el home -->
             </li>
-            <li class="nav-item mx-2">
+            <li class="nav-item mx-2" [hidden]="hidde() === false">
               <a class="nav-link" routerLink="/parking" routerLinkActive="active" ariaCurrentWhenActive="page" >Estacionamiento</a>
             </li>
-            <li class="nav-item mx-2">
+           <!--  <li class="nav-item mx-2">
               <a routerLink="/aboutUs" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link">Sobre nosotros</a>
-            </li>
+            </li> -->
           </ul>
           <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-            <button *ngIf="!userService.isAuthenticated()" routerLink="/login" ariaCurrentWhenActive="page" class="btn btnLR">Iniciar sesión</button>
-            <button *ngIf="!userService.isAuthenticated()" routerLink="/sign-Up" ariaCurrentWhenActive="page" class="btn btnLR">Registrarse</button>
+            <button [hidden]="hidde() === true" routerLink="/login" ariaCurrentWhenActive="page" class="btn btnLR">Iniciar sesión</button>
+            <button [hidden]="hidde() === true" routerLink="/sign-Up" ariaCurrentWhenActive="page" class="btn btnLR">Registrarse</button>
             <div *ngIf="userService.isAuthenticated()" class="dropdown">  
               <button class="btn btnLR dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person text-white"></i> {{name()}}
