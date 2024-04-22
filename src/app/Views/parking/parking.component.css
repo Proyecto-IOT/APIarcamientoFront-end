@@ -1,9 +1,57 @@
 .fondo{
-    background-color: var(--extra-light);
+    background-color: #333;
   }
 
-@media (max-width: 767px) {
-    .row {
-      justify-content: center;
-    }
+  .parking-spot {
+    margin-top: 20px;
+    margin-bottom: 1rem;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    text-align: center;
   }
+
+  .parking-spotI {
+    border-bottom: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    text-align: center;
+  }
+
+  .parking-spotF{
+    border-bottom: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .carImg{
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .separacion{
+    margin-top: 12rem;
+  }
+
+  .numCajon{
+    color: #fff;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+ .seccText{
+  color: #fff;
+  font-weight: bold;
+ }
+
+ .NoDisponible{
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+ }
+
+
+@media (max-width: 500px) {}

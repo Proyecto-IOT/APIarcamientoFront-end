@@ -1,24 +1,53 @@
-<div class="fondo">
-    <div class="container bg-dark text-white">
-        <div class="row justify-content-center">
-          <div class="col">
-            <div class="row">
-              <div class="col">1</div>
-              <div class="col">2</div>
-              <div class="col">3</div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col">
-            <h2 class="text-center">Sección 1</h2>
-            <div class="row">
-              <div class="col">4</div>
-              <div class="col">5</div>
-              <div class="col">6</div>
-            </div>
-          </div>
-        </div>
+<div class="text-center my-4 container-fluid" [hidden]="hiddeParking() === false">
+  <span class="NoDisponible">Esta función está disponible tanto en la aplicación como en la versión de escritorio</span>
+  <img src="../../../assets/503.png" alt="Error503" class="img-fluid">
+</div>
+
+<div class="fondo" [hidden]="hiddeParking() === true">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 parking-spot" *ngFor="let spot of spotsOcupados">
+        <div class="numCajon"><span>{{spot.parking_id}}</span></div>
+        <img class="carImg" src="../../../assets/car.png" alt="car" [hidden]="spot.is_active === 0">
       </div>
+    </div>
+
+    <div class="row separacion">
+      <div class="col-md-4 parking-spotI">
+        <div class="numCajon"><span>4</span></div>
+      </div>
+      <div class="col-md-4 parking-spotI">
+        <div class="numCajon"><span>5</span></div>
+      </div>
+      <div class="col-md-4 parking-spotI">
+        <div class="numCajon"><span>6</span></div>
+      </div>
+    </div>
+    
+
+    <div class="row">
+      <div class="col-md-4 parking-spot">
+        <div class="numCajon"><span>7</span></div>
+      </div>
+      <div class="col-md-4 parking-spot">
+        <div class="numCajon"><span>8</span></div>
+      </div>
+      <div class="col-md-4 parking-spot">
+        <div class="numCajon"><span>9</span></div>
+      </div>
+    </div>
+
+    <div class="row separacion">
+      <div class="col-md-4 parking-spotF">
+        <div class="numCajon"><span>4</span></div>
+      </div>
+      <div class="col-md-4 parking-spotF">
+        <div class="numCajon"><span>5</span></div>
+      </div>
+      <div class="col-md-4 parking-spotF">
+        <div class="numCajon"><span>6</span></div>
+      </div>
+    </div>
+  </div>
 </div>
   

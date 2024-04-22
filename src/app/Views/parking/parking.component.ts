@@ -1,12 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { ParkingService } from '../../core/services/parking.service';
+import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-parking',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './parking.component.html',
   styleUrl: './parking.component.css'
 })
 export default class ParkingComponent {
+  spotsOcupados: any[] = [];
+  hiddeParking = signal<boolean>(false);
 
+  readonly breakPoint$ = this.breakPointObserver.observe(`(max-width: 500px)`);
+
+  constructor(private parkingService: ParkingService, private breakPointObserver: BreakpointObserver){
+    this.breakPoint$.subscribe(() => this.breakpointChanges())
+  }
+
+  breakpointChanges(): void{
+    if(this.breakPointObserver.isMatched(`(max-width: 500px)`)){
+      this.hiddeParking.set(true);
+    }else{
+      this.hiddeParking.set(false);
+    }
+  }
+
+  ngOnInit(): void{
+    this.getLugares();
+  } 
+
+  getLugares(){
+    this.parkingService.getEstacionados().subscribe(
+      (response) =>{
+        this.spotsOcupados = response.data;
+        console.log(this.spotsOcupados);
+      },
+      (error) =>{
+        Swal.fire({
+          title: 'Error',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    )
+  }
+
+  ngOndestroy(): void{
+  }
 }
