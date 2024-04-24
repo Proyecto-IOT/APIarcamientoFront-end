@@ -26,7 +26,7 @@
           <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
             <button [hidden]="hidde() === true" routerLink="/login" ariaCurrentWhenActive="page" class="btn btnLR">Iniciar sesión</button>
             <button [hidden]="hidde() === true" routerLink="/sign-Up" ariaCurrentWhenActive="page" class="btn btnLR">Registrarse</button>
-            <div *ngIf="userService.isAuthenticated()" class="dropdown">  
+            <div [hidden]="hidde() === false" class="dropdown">  
               <button class="btn btnLR dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person text-white"></i> {{name()}}
               </button>

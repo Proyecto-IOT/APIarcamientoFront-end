@@ -31,6 +31,12 @@
                 </a>
             </li>
             <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" routerLink="allSensors" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="sidenav-link-icon bi bi-clipboard-data"></i>
+                    <span [hidden]="collapsed() === false" class="sidenav-link-text">Todos los sensores</span>
+                </a>
+            </li>
+            <li class="sidenav-nav-item">
                 <a class="sidenav-nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
                     <i class="sidenav-link-icon bi bi-house"></i>
                     <span [hidden]="collapsed() === false" class="sidenav-link-text">Regresar al inicio</span>

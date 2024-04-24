@@ -1,25 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { AlertsService } from '../../../core/services/alerts.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-all-registros',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './all-registros.component.html',
   styleUrl: './all-registros.component.css'
 })
 export default class AllRegistrosComponent {
   listAllSensores: any[] = [];
+  properties: string[] = [];
+  filterProperty: string = '';
 
   constructor(private alertService: AlertsService){}
 
   ngOnInit(): void{
     this.alertService.getallSensors().subscribe(
       (response) => {
-        this.listAllSensores = response.data;
-        console.log(this.listAllSensores);
+        const primerSensor = response.data.find((objeto: any) => Array.isArray(objeto.Sensor));
+        if (primerSensor) {
+          this.listAllSensores = primerSensor.Sensor;
+          console.log(this.listAllSensores);
+        } else {
+          console.error('No se encontró ningún objeto con la propiedad Sensor');
+        }
       },
       (error) =>{
         let errorMessage = '';
@@ -42,5 +50,24 @@ export default class AllRegistrosComponent {
           });
       }
     )
+  }
+
+  filterSensor(sensorName: string): boolean {
+    if (this.properties.length === 0 || this.properties.includes('todos')) {
+      return true;
+    }
+
+    return this.properties.includes(sensorName);
+  }
+  
+  filterDate(date: string): boolean {
+    if (!this.filterProperty) return true; 
+
+    const selectedDate = this.filterProperty.split('T')[0];
+    const parsedSelectedDate = new Date(selectedDate);
+    const itemDate = date.split(' ')[0];
+    const parsedItemDate = new Date(itemDate);
+  
+    return parsedSelectedDate.getTime() === parsedItemDate.getTime();
   }
 }
