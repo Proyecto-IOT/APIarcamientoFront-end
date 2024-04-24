@@ -9,7 +9,7 @@
                     <div class="row g-0">
                       <div class="col-md-7">
                         <div class="card-body">
-                          <p class="card-text"><span class="label">Valor: </span>{{alertaHumo.Dato}}</p>
+                          <p class="card-text"><span class="label">{{ nivelesHumoMapa.get(alertaHumo.Dato)}}</span> {{alertaHumo.Dato}}ppm</p>
                           <p class="card-text"><span class="label">Fecha y hora: </span>{{alertaHumo.Fecha}}</p>
                         </div>
                       </div>
@@ -56,7 +56,7 @@
       <h4 [hidden]="noHay() === true" class="fw-bold">No hay alertas 😿</h4>
     </div>  
     <div class="container d-flex justify-content-center align-items-center">
-      <pagination-controls class="my-pagination" (pageChange)="p = $event" id="sonidoAlert" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+      <pagination-controls class="my-pagination" (pageChange)="ps = $event" id="sonidoAlert" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
     </div>
   </div>
 </div>

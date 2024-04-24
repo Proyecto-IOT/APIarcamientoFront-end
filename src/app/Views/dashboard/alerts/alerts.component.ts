@@ -21,6 +21,7 @@ export default class AlertsComponent {
   p: number | undefined = 1;
   ps: number | undefined = 1;
   noHay = signal<boolean>(false);
+  nivelesHumoMapa: Map<number, string> = new Map<number, string>();
   
   alertas = new FormGroup({
     id: new FormControl(1, [Validators.required])
@@ -49,9 +50,24 @@ export default class AlertsComponent {
     const idSensor = this.alertas.value;
     this.alertService.getHumoAlerts(idSensor).subscribe(
       (response) => {
-        this.alertasHumo = response.data.Data;
+         this.alertasHumo = response.data.Data.map((objeto: any) => ({
+          ...objeto,
+          Dato: parseInt(objeto.Dato)
+      }));
+
+      this.nivelesHumoMapa.clear();
+
+      this.alertasHumo.forEach(alerta => {
+        if (alerta.Dato >= 300) {
+            this.nivelesHumoMapa.set(alerta.Dato, "Nivel alto de humo:");
+        } else if (alerta.Dato <= 100) {
+            this.nivelesHumoMapa.set(alerta.Dato, "Nivel bajo de humo:");
+        } else if (alerta.Dato >= 100  && alerta.Dato <= 300){
+            this.nivelesHumoMapa.set(alerta.Dato, "Nivel normal de humo:");
+        }
+      });
+      
         this.noHay.set(true);
-        console.log(this.alertasHumo);
       },
       (error) =>{
         let errorMessage = '';
